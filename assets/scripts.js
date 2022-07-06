@@ -25,6 +25,7 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=
             dataType: 'json',
             success: function (data) {
                 console.log(data)
+                restaurantList(data)
             }
         })
 
@@ -37,10 +38,16 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=
 
 //creates event listener for search button
 searchButton.on("click", function(){
-    console.log("functionsssssss")
     apiPull()
 })
 
+function restaurantList(data) {
+    restaurantListContainer = document.querySelector(".restaurant-list")
+    restaurantName = document.createElement("li")
+    restaurantName.textContent = data.businesses[0].name
+    restaurantListContainer.append(restaurantName)
+    console.log(data.businesses[0].name)
+}
 
 
 
