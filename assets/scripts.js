@@ -13,7 +13,11 @@ fetch(`https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id
 
 fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {console.log(data)
+        lat = data[0].lat
+        lon = data[0].lon
+        console.log(lat)
+    })
     .catch(err => console.error(err));
 
 $.ajax({
@@ -26,12 +30,12 @@ $.ajax({
     success: function (data) {
         console.log(data)
     }
+    
 })
 
 }
 
-
-
+//creates event listener for search button
 searchButton.on("click", function(){
     console.log("functionsssssss")
     apiPull()
