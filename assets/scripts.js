@@ -26,7 +26,9 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=7acb1
     .then(data => console.log(data))
     .catch(err => console.error(err));
 
-
+searchButton.on("click", function(){
+    console.log("functionsssssss")
+})
 
 
 
