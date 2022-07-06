@@ -16,22 +16,22 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=
     .then(data => {console.log(data)
         lat = data[0].lat
         lon = data[0].lon
-        console.log(lat)
+        $.ajax({
+            url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=delis&latitude=${lat}&longitude=${lon}`,
+            headers: {
+                'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
+            },
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+            }
+        })
+
     })
     .catch(err => console.error(err));
 
-$.ajax({
-    url: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=delis&latitude=37.786882&longitude=-122.399972',
-    headers: {
-        'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
-    },
-    method: 'GET',
-    dataType: 'json',
-    success: function (data) {
-        console.log(data)
-    }
-    
-})
+
 
 }
 
