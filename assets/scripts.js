@@ -47,17 +47,22 @@ searchButton.on("click", function () {
 })
 
 function restaurantList(data) {
+    for (var i =0; i < 10; i++) {
     restaurantListContainer = document.querySelector(".restaurant-list")
+    restaurantCard = document.createElement("div")
     restaurantName = document.createElement("li")
-    restaurantName.textContent = data.businesses[0].name + " " + data.businesses[0].rating + "⭐"
-    restaurantListContainer.append(restaurantName)
-    restaurantName = document.createElement("li")
-    restaurantName.textContent = data.businesses[0].location.display_address[0] + " " + data.businesses[1].location.display_address[1]
-    restaurantListContainer.append(restaurantName)
+    restaurantListContainer.append(restaurantCard)
+    restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+    restaurantCard.append(restaurantName)
+    restaurantAddress = document.createElement("li")
+    restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+    restaurantCard.append(restaurantAddress)
     restaurantPhone = document.createElement("li")
-    restaurantPhone.textContent = data.businesses[0].display_phone
-    restaurantListContainer.append(restaurantPhone)
-    restaurantListContainer.setAttribute('class', 'card')
+    restaurantPhone.textContent = data.businesses[i].display_phone
+    restaurantCard.append(restaurantPhone)
+    restaurantCard.setAttribute('class', 'card')
+    
+    }
 }
 
 
