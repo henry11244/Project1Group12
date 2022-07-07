@@ -49,7 +49,7 @@ searchButton.on("click", function () {
 function restaurantList(data) {
     restaurantListContainer = document.querySelector(".restaurant-list")
     restaurantName = document.createElement("li")
-    restaurantName.textContent = data.businesses[0].name
+    restaurantName.textContent = data.businesses[0].name + " " + data.businesses[0].rating + "⭐"
     restaurantListContainer.append(restaurantName)
     restaurantName = document.createElement("li")
     restaurantName.textContent = data.businesses[0].location.display_address[0] + " " + data.businesses[1].location.display_address[1]
