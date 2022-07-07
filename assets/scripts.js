@@ -54,7 +54,9 @@ function restaurantList(data) {
     restaurantName = document.createElement("li")
     restaurantName.textContent = data.businesses[0].location.display_address[0] + " " + data.businesses[1].location.display_address[1]
     restaurantListContainer.append(restaurantName)
-    
+    restaurantPhone = document.createElement("li")
+    restaurantPhone.textContent = data.businesses[0].display_phone
+    restaurantListContainer.append(restaurantPhone)
 
 }
 
