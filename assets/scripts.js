@@ -29,7 +29,7 @@ function apiPull() {
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data)
+                   
                     restaurantList(data)
                 }
             })
@@ -51,7 +51,6 @@ function restaurantList(data) {
     restaurantName = document.createElement("li")
     restaurantName.textContent = data.businesses[0].name
     restaurantListContainer.append(restaurantName)
-    console.log(data.businesses[0].name)
     restaurantName = document.createElement("li")
     restaurantName.textContent = data.businesses[0].location.display_address[0] + " " + data.businesses[1].location.display_address[1]
     restaurantListContainer.append(restaurantName)
