@@ -57,7 +57,7 @@ function restaurantList(data) {
     restaurantPhone = document.createElement("li")
     restaurantPhone.textContent = data.businesses[0].display_phone
     restaurantListContainer.append(restaurantPhone)
-
+    restaurantListContainer.setAttribute('class', 'card')
 }
 
 
