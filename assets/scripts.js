@@ -11,7 +11,7 @@ function apiPull() {
         .then(data => {
             console.log(data.results[0].links.download); cityPicture = data.results[0].links.download
 
-            $('html').css(`background-image: url("${cityPicture}")`)
+/*             $('html').css(`background-image: url("${cityPicture}")`) */
         })
         .catch(err => console.error(err));
 
@@ -52,7 +52,13 @@ function restaurantList(data) {
     restaurantName.textContent = data.businesses[0].name
     restaurantListContainer.append(restaurantName)
     console.log(data.businesses[0].name)
+    restaurantName = document.createElement("li")
+    restaurantName.textContent = data.businesses[0].location.display_address[0] + " " + data.businesses[1].location.display_address[1]
+    restaurantListContainer.append(restaurantName)
+    
+
 }
+
 
 
 
