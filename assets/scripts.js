@@ -83,6 +83,10 @@ function filterPrice(data) {
         console.log(data.businesses[0].price)
          
     }
+    if (price2.val() && data.businesses[0].price == '$$') {
+        console.log(data.businesses[0].price)
+         
+    }
 
 
 }
