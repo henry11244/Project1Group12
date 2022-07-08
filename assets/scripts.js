@@ -1,6 +1,11 @@
 var userInput = $("#user-input")
 var searchButton = $("#search-button")
 var count = 0
+var errorMessage = document.querySelector('#errorMessage')
+var savedCities = []
+
+// local storage pull
+if (JSON.parse(localStorage.getItem('savedCities') !== null)) { locationSearches = JSON.parse(localStorage.getItem('savedCities')) }
 
 function apiPull() {
     cityName = userInput.val()
@@ -8,37 +13,40 @@ function apiPull() {
     fetch(`https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=0jqDAD-zXewS00iMXPqH9-EWmxQwXtr_3FGl5EqT8c0`)
         .then(response => response.json())
         .then(data => {
+            errorMessage.style.display = 'none'
             cityPicture = data.results[0].links.download
             console.log(cityPicture);
             var html = document.querySelector('html')
             html.style.backgroundImage = `url("${data.results[0].links.download}")`;
-        })
-        .catch(err => { console.log('hi') });
+            localStorageAdd(cityName)
 
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            lat = data[0].lat
-            lon = data[0].lon
-            $.ajax({
-                url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lon}&limit=50`,
-                headers: {
-                    'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
-                },
-                method: 'GET',
-                dataType: 'json',
-                success: function (data) {
+
+
+            // yelp API
+            fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
+                .then(response => response.json())
+                .then(data => {
                     console.log(data)
-                    filterPrice(data)
+                    lat = data[0].lat
+                    lon = data[0].lon
+                    $.ajax({
+                        url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lon}&limit=50`,
+                        headers: {
+                            'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
+                        },
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            console.log(data)
+                            filterPrice(data)
 
-                }
-            })
+                        }
+                    })
 
+                })
+                .catch(err => console.error(err));
         })
-        .catch(err => console.error(err));
-
-
+        .catch(err => { errorMessage.style.display = 'block' });
 
 }
 
@@ -146,6 +154,18 @@ function filterPrice(data) {
 }
 
 
+
+// add to local storage
+localStorageAdd = (cityName) => {
+    repeat = false
+    for (var i = 0; i < savedCities.length; i++) {
+        if (cityName.trim().toUpperCase() == savedCities[i].trim().toUpperCase()) { repeat = true }
+    }
+    if (repeat == false) {
+        savedCities.unshift(cityName);
+        localStorage.setItem('savedCities', JSON.stringify(savedCities))
+    }
+}
 
 
 
