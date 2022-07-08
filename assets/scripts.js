@@ -2,16 +2,16 @@ var userInput = $("#user-input")
 var searchButton = $("#search-button")
 
 
-
 function apiPull() {
     cityName = userInput.val()
     // need to insert city search into URL and inject URL IMG
     fetch(`https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=0jqDAD-zXewS00iMXPqH9-EWmxQwXtr_3FGl5EqT8c0`)
         .then(response => response.json())
         .then(data => {
-            console.log(data.results[0].links.download); cityPicture = data.results[0].links.download
-
-/*             $('html').css(`background-image: url("${cityPicture}")`) */
+            cityPicture = data.results[0].links.download
+            console.log(cityPicture);
+            var html = document.querySelector('html')
+            html.style.backgroundImage = `url("${data.results[0].links.download}")`;
         })
         .catch(err => console.error(err));
 
@@ -29,8 +29,9 @@ function apiPull() {
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                   
+
                     restaurantList(data)
+
                 }
             })
 
@@ -47,26 +48,27 @@ searchButton.on("click", function () {
 })
 
 function restaurantList(data) {
-    for (var i =0; i < 10; i++) {
-    restaurantListContainer = document.querySelector(".restaurant-list")
-    restaurantCard = document.createElement("div")
-    restaurantName = document.createElement("li")
-    restaurantListContainer.append(restaurantCard)
-    restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
-    restaurantCard.append(restaurantName)
-    restaurantAddress = document.createElement("li")
-    restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
-    restaurantCard.append(restaurantAddress)
-    restaurantPhone = document.createElement("li")
-    restaurantPhone.textContent = data.businesses[i].display_phone
-    restaurantCard.append(restaurantPhone)
-    restaurantCard.setAttribute('class', 'card')
-    
+    for (var i = 0; i < 10; i++) {
+        restaurantListContainer = document.querySelector(".restaurant-list")
+        restaurantCard = document.createElement("div")
+        restaurantName = document.createElement("li")
+        restaurantListContainer.append(restaurantCard)
+        restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+        restaurantCard.append(restaurantName)
+        restaurantAddress = document.createElement("li")
+        restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+        restaurantCard.append(restaurantAddress)
+        restaurantPhone = document.createElement("li")
+        restaurantPhone.textContent = data.businesses[i].display_phone
+        restaurantCard.append(restaurantPhone)
+        restaurantCard.setAttribute('class', 'card')
+
+
     }
 }
 
 function checkBox() {
-    
+
 }
 
 
