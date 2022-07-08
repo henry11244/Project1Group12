@@ -79,23 +79,25 @@ function filterPrice(data) {
     const price2 = $('#price-option2')
     const price3 = $('#price-option3')
     const price4 = $('#price-option4')
-    if (price1.val() && data.businesses[0].price == '$') {
-        console.log(data.businesses[0].price)
+    for (var i = 0; i < 10; i++) {
+    if (price1.val() && data.businesses[i].price == '$') {
+        console.log(data.businesses[i].price)
          
     }
-    else if (price2.val() && data.businesses[0].price == '$$') {
-        console.log(data.businesses[0].price)
+    else if (price2.val() && data.businesses[i].price == '$$') {
+        console.log(data.businesses[i].price)
          
     }
-    else if (price3.val() && data.businesses[0].price == '$$$') {
-        console.log(data.businesses[0].price)
+    else if (price3.val() && data.businesses[i].price == '$$$') {
+        console.log(data.businesses[i].price)
          
     }
-    else if (price4.val() && data.businesses[0].price == '$$$$') {
-        console.log(data.businesses[0].price)
+    else if (price4.val() && data.businesses[i].price == '$$$$') {
+        console.log(data.businesses[i].price)
          
     } else {
         return;
+    }
     }
 }
 
