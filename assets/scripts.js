@@ -22,7 +22,7 @@ function apiPull() {
             lat = data[0].lat
             lon = data[0].lon
             $.ajax({
-                url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=delis&latitude=${lat}&longitude=${lon}`,
+                url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?&latitude=${lat}&longitude=${lon}`,
                 headers: {
                     'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
                 },
