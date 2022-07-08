@@ -32,6 +32,7 @@ function apiPull() {
                 success: function (data) {
                     console.log(data)
                     restaurantList(data)
+                    filterPrice(data)
 
                 }
             })
@@ -64,8 +65,6 @@ function restaurantList(data) {
         restaurantPhone.textContent = data.businesses[i].display_phone
         restaurantCard.append(restaurantPhone)
         restaurantCard.setAttribute('class', 'card')
-
-
     }
 }
 
@@ -75,8 +74,12 @@ function clearCards() {
     }
 }
 
-function filterPrice() {
-    
+function filterPrice(data) {
+    const price1 = $('#price-option1')
+    const price2 = $('#price-option2')
+    const price3 = $('#price-option3')
+    const price4 = $('#price-option4')
+
 }
 
 
