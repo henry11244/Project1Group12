@@ -2,6 +2,7 @@ var userInput = $("#user-input")
 var searchButton = $("#search-button")
 
 
+
 function apiPull() {
     cityName = userInput.val()
     // need to insert city search into URL and inject URL IMG
@@ -44,6 +45,7 @@ function apiPull() {
 
 //creates event listener for search button
 searchButton.on("click", function () {
+    clearCards()
     apiPull()
 })
 
@@ -67,8 +69,10 @@ function restaurantList(data) {
     }
 }
 
-function checkBox() {
-
+function clearCards() {
+    for (var i = 0; i < 10; i++) {
+        $('.restaurant-list').empty()
+    }
 }
 
 
