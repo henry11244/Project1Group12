@@ -29,7 +29,7 @@ function apiPull() {
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
-
+                    console.log(data)
                     restaurantList(data)
 
                 }
