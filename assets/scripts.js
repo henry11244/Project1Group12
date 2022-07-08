@@ -11,6 +11,8 @@ function apiPull() {
         .then(data => {
             console.log(data.results[0].links.download); cityPicture = data.results[0].links.download
             // // $('html').css(`background-image: url("${cityPicture}")`)
+
+            /*             $('html').css(`background-image: url("${cityPicture}")`) */
         })
         .catch(err => console.error(err));
 
@@ -28,7 +30,7 @@ function apiPull() {
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data)
+
                     restaurantList(data)
                 }
             })
@@ -46,12 +48,28 @@ searchButton.on("click", function () {
 })
 
 function restaurantList(data) {
-    restaurantListContainer = document.querySelector(".restaurant-list")
-    restaurantName = document.createElement("li")
-    restaurantName.textContent = data.businesses[0].name
-    restaurantListContainer.append(restaurantName)
-    console.log(data.businesses[0].name)
+    for (var i = 0; i < 10; i++) {
+        restaurantListContainer = document.querySelector(".restaurant-list")
+        restaurantCard = document.createElement("div")
+        restaurantName = document.createElement("li")
+        restaurantListContainer.append(restaurantCard)
+        restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+        restaurantCard.append(restaurantName)
+        restaurantAddress = document.createElement("li")
+        restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+        restaurantCard.append(restaurantAddress)
+        restaurantPhone = document.createElement("li")
+        restaurantPhone.textContent = data.businesses[i].display_phone
+        restaurantCard.append(restaurantPhone)
+        restaurantCard.setAttribute('class', 'card')
+
+    }
 }
+
+function checkBox() {
+
+}
+
 
 
 
