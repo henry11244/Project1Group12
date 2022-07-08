@@ -51,7 +51,7 @@ searchButton.on("click", function () {
 })
 
 function restaurantList(data) {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 50; i++) {
         restaurantListContainer = document.querySelector(".restaurant-list")
         restaurantCard = document.createElement("div")
         restaurantName = document.createElement("li")
@@ -69,7 +69,7 @@ function restaurantList(data) {
 }
 
 function clearCards() {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 50; i++) {
         $('.restaurant-list').empty()
     }
 }
@@ -79,24 +79,23 @@ function filterPrice(data) {
     const price2 = $('#price-option2')
     const price3 = $('#price-option3')
     const price4 = $('#price-option4')
-    for (var i = 0; i < 10; i++) {
-    if (price1.val() && data.businesses[i].price == '$') {
+    for (var i = 0; i < 50; i++) {
+    if (price1.click() && data.businesses[i].price == '$') {
         console.log(data.businesses[i].price)
          
     }
-    else if (price2.val() && data.businesses[i].price == '$$') {
+    else if (price2.click() && data.businesses[i].price == '$$') {
         console.log(data.businesses[i].price)
          
     }
-    else if (price3.val() && data.businesses[i].price == '$$$') {
+    else if (price3.click() && data.businesses[i].price == '$$$') {
         console.log(data.businesses[i].price)
          
     }
-    else if (price4.val() && data.businesses[i].price == '$$$$') {
+    else if (price4.click() && data.businesses[i].price == '$$$$') {
         console.log(data.businesses[i].price)
          
     } else {
-        return;
     }
     }
 }
