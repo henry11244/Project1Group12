@@ -1,8 +1,6 @@
 var userInput = $("#user-input")
 var searchButton = $("#search-button")
 
-
-
 function apiPull() {
     cityName = userInput.val()
     // need to insert city search into URL and inject URL IMG
@@ -31,7 +29,7 @@ function apiPull() {
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
-                    restaurantList(data)
+                    // restaurantList(data)
                     filterPrice(data)
 
                 }
@@ -50,8 +48,37 @@ searchButton.on("click", function () {
     apiPull()
 })
 
-function restaurantList(data) {
-    for (var i = 0; i < 50; i++) {
+// function restaurantList(data) {
+//     for (var i = 0; i < 10; i++) {
+//         restaurantListContainer = document.querySelector(".restaurant-list")
+//         restaurantCard = document.createElement("div")
+//         restaurantName = document.createElement("li")
+//         restaurantListContainer.append(restaurantCard)
+//         restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+//         restaurantCard.append(restaurantName)
+//         restaurantAddress = document.createElement("li")
+//         restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+//         restaurantCard.append(restaurantAddress)
+//         restaurantPhone = document.createElement("li")
+//         restaurantPhone.textContent = data.businesses[i].display_phone
+//         restaurantCard.append(restaurantPhone)
+//         restaurantCard.setAttribute('class', 'card')
+//     }
+// }
+
+function clearCards() {
+    for (var i = 0; i < 10; i++) {
+        $('.restaurant-list').empty()
+    }
+}
+
+function filterPrice(data) {
+    const price1 = $('#price-option1')
+    const price2 = $('#price-option2')
+    const price3 = $('#price-option3')
+    const price4 = $('#price-option4')
+    for (var i = 0; i < 10; i++) {
+    if (price1.val() && data.businesses[i].price == '$') {
         restaurantListContainer = document.querySelector(".restaurant-list")
         restaurantCard = document.createElement("div")
         restaurantName = document.createElement("li")
@@ -66,36 +93,64 @@ function restaurantList(data) {
         restaurantCard.append(restaurantPhone)
         restaurantCard.setAttribute('class', 'card')
     }
-}
-
-function clearCards() {
-    for (var i = 0; i < 50; i++) {
-        $('.restaurant-list').empty()
+    else if (price2.val() && data.businesses[i].price == '$$') {
+        restaurantListContainer = document.querySelector(".restaurant-list")
+        restaurantCard = document.createElement("div")
+        restaurantName = document.createElement("li")
+        restaurantListContainer.append(restaurantCard)
+        restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+        restaurantCard.append(restaurantName)
+        restaurantAddress = document.createElement("li")
+        restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+        restaurantCard.append(restaurantAddress)
+        restaurantPhone = document.createElement("li")
+        restaurantPhone.textContent = data.businesses[i].display_phone
+        restaurantCard.append(restaurantPhone)
+        restaurantCard.setAttribute('class', 'card')
     }
-}
-
-function filterPrice(data) {
-    const price1 = $('#price-option1')
-    const price2 = $('#price-option2')
-    const price3 = $('#price-option3')
-    const price4 = $('#price-option4')
-    for (var i = 0; i < 50; i++) {
-    if (price1.click() && data.businesses[i].price == '$') {
-        console.log(data.businesses[i].price)
-         
+    else if (price3.val() && data.businesses[i].price == '$$$') {
+        restaurantListContainer = document.querySelector(".restaurant-list")
+        restaurantCard = document.createElement("div")
+        restaurantName = document.createElement("li")
+        restaurantListContainer.append(restaurantCard)
+        restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+        restaurantCard.append(restaurantName)
+        restaurantAddress = document.createElement("li")
+        restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+        restaurantCard.append(restaurantAddress)
+        restaurantPhone = document.createElement("li")
+        restaurantPhone.textContent = data.businesses[i].display_phone
+        restaurantCard.append(restaurantPhone)
+        restaurantCard.setAttribute('class', 'card')
     }
-    else if (price2.click() && data.businesses[i].price == '$$') {
-        console.log(data.businesses[i].price)
-         
-    }
-    else if (price3.click() && data.businesses[i].price == '$$$') {
-        console.log(data.businesses[i].price)
-         
-    }
-    else if (price4.click() && data.businesses[i].price == '$$$$') {
-        console.log(data.businesses[i].price)
-         
+    else if (price4.val() && data.businesses[i].price == '$$$$') {
+        restaurantListContainer = document.querySelector(".restaurant-list")
+        restaurantCard = document.createElement("div")
+        restaurantName = document.createElement("li")
+        restaurantListContainer.append(restaurantCard)
+        restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+        restaurantCard.append(restaurantName)
+        restaurantAddress = document.createElement("li")
+        restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+        restaurantCard.append(restaurantAddress)
+        restaurantPhone = document.createElement("li")
+        restaurantPhone.textContent = data.businesses[i].display_phone
+        restaurantCard.append(restaurantPhone)
+        restaurantCard.setAttribute('class', 'card')
     } else {
+        restaurantListContainer = document.querySelector(".restaurant-list")
+        restaurantCard = document.createElement("div")
+        restaurantName = document.createElement("li")
+        restaurantListContainer.append(restaurantCard)
+        restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+        restaurantCard.append(restaurantName)
+        restaurantAddress = document.createElement("li")
+        restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+        restaurantCard.append(restaurantAddress)
+        restaurantPhone = document.createElement("li")
+        restaurantPhone.textContent = data.businesses[i].display_phone
+        restaurantCard.append(restaurantPhone)
+        restaurantCard.setAttribute('class', 'card')
     }
     }
 }
