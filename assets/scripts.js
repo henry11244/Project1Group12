@@ -71,14 +71,21 @@ function clearCards() {
         $('.restaurant-list').empty()
     }
 }
+var filter1 = $("#filter1")
 
 function filterPrice(data) {
-    const price1 = $('#price-option1')
-    const price2 = $('#price-option2')
-    const price3 = $('#price-option3')
-    const price4 = $('#price-option4')
+    // const price1 = $('#price-option1')
+    // const price2 = $('#price-option2')
+    // const price3 = $('#price-option3')
+    // const price4 = $('#price-option4')
+
+    console.log(filter1.val())
+
+
     for (var i = 0; i < 10; i++) {
-    if (price1.val() && data.businesses[i].price == '$') {
+        console.log(data.businesses[i].price)
+    if (filter1.val() == 1 && data.businesses[i].price == '$') {
+
         restaurantListContainer = document.querySelector(".restaurant-list")
         restaurantCard = document.createElement("div")
         restaurantName = document.createElement("li")
@@ -93,7 +100,7 @@ function filterPrice(data) {
         restaurantCard.append(restaurantPhone)
         restaurantCard.setAttribute('class', 'card')
     }
-    else if (price2.val() && data.businesses[i].price == '$$') {
+    else if (filter1.val() == 2 && data.businesses[i].price == '$$') {
         restaurantListContainer = document.querySelector(".restaurant-list")
         restaurantCard = document.createElement("div")
         restaurantName = document.createElement("li")
@@ -108,7 +115,7 @@ function filterPrice(data) {
         restaurantCard.append(restaurantPhone)
         restaurantCard.setAttribute('class', 'card')
     }
-    else if (price3.val() && data.businesses[i].price == '$$$') {
+    else if (filter1.val() == 3 && data.businesses[i].price == '$$$') {
         restaurantListContainer = document.querySelector(".restaurant-list")
         restaurantCard = document.createElement("div")
         restaurantName = document.createElement("li")
@@ -123,7 +130,7 @@ function filterPrice(data) {
         restaurantCard.append(restaurantPhone)
         restaurantCard.setAttribute('class', 'card')
     }
-    else if (price4.val() && data.businesses[i].price == '$$$$') {
+    else if (filter1.val() == 4 && data.businesses[i].price == '$$$$') {
         restaurantListContainer = document.querySelector(".restaurant-list")
         restaurantCard = document.createElement("div")
         restaurantName = document.createElement("li")
