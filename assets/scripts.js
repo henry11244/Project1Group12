@@ -75,6 +75,10 @@ function clearCards() {
     }
 }
 
+function filterPrice() {
+    
+}
+
 
 
 
