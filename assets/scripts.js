@@ -10,8 +10,7 @@ function apiPull() {
         .then(response => response.json())
         .then(data => {
             console.log(data.results[0].links.download); cityPicture = data.results[0].links.download
-
-            $('html').css(`background-image: url("${cityPicture}")`)
+            // // $('html').css(`background-image: url("${cityPicture}")`)
         })
         .catch(err => console.error(err));
 
