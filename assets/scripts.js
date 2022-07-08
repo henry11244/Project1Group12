@@ -38,8 +38,6 @@ function apiPull() {
         })
         .catch(err => console.error(err));
 
-
-
 }
 
 //creates event listener for search button
@@ -59,12 +57,13 @@ function filterPrice(data) {
     count = 0
     for (var i = 0; i < 50; i++) {
         if (count < 10) {
-
-            console.log(data.businesses[i].price)
             if (filter1.val()[0] == 1 && data.businesses[i].price == '$') {
 
                 restaurantListContainer = document.querySelector(".restaurant-list")
+                restaurantImage = document.createElement("img")
+                restaurantImage.src = data.businesses[i].image_url
                 restaurantCard = document.createElement("div")
+                restaurantCard.append(restaurantImage)
                 restaurantName = document.createElement("li")
                 restaurantListContainer.append(restaurantCard)
                 restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"

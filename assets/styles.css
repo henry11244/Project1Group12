@@ -2,3 +2,34 @@
         background-image: url("https://images.unsplash.com/photo-1602083337579-2d33797f8e69?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb");
         background-size: 100%;
     } */
+
+.restaurant-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+
+}
+
+.card {
+    display: flex;
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+
+}
+
+img {
+    margin-right: 50px;
+    width: 100px;
+}
