@@ -173,7 +173,7 @@ function filterPrice(data) {
     }
 }
 
-
+function filterType(data)
 
 
 
