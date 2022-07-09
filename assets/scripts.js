@@ -198,6 +198,26 @@ function filterType(data) {
                 restaurantCard.setAttribute('class', 'card')
                 restaurantListContainer.append(restaurantCard)
                 count++
+            } else if (filter2.val()[0] == undefined) {
+                restaurantListContainer = document.querySelector(".restaurant-list")
+                restaurantCard = document.createElement("div")
+                restaurantImage = document.createElement("img")
+                restaurantImage.src = data.businesses[i].image_url
+                restaurantCard.append(restaurantImage)
+                restaurantName = document.createElement("a")
+                restaurantName.setAttribute("href", data.businesses[i].url)
+                restaurantName.setAttribute("target", "_blank")
+                restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+                restaurantCard.append(restaurantName)
+                restaurantAddress = document.createElement("li")
+                restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+                restaurantCard.append(restaurantAddress)
+                restaurantPhone = document.createElement("li")
+                restaurantPhone.textContent = data.businesses[i].display_phone
+                restaurantCard.append(restaurantPhone)
+                restaurantCard.setAttribute('class', 'card')
+                restaurantListContainer.append(restaurantCard)
+                count++
             }
         }
     }
