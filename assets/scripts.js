@@ -1,11 +1,12 @@
 var userInput = $("#user-input")
+var userInputs = document.querySelector("#user-input")
 var searchButton = $("#search-button")
 var count = 0
 var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
 
 // local storage pull
-if (JSON.parse(localStorage.getItem('savedCities') !== null)) { locationSearches = JSON.parse(localStorage.getItem('savedCities')) }
+if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JSON.parse(localStorage.getItem('savedCities')) }
 
 function apiPull() {
     cityName = userInput.val()
@@ -165,6 +166,82 @@ localStorageAdd = (cityName) => {
         savedCities.unshift(cityName);
         localStorage.setItem('savedCities', JSON.stringify(savedCities))
     }
+}
+
+
+autocomplete();
+
+// autocomplete
+function autocomplete() {
+    var currentFocus;
+    if (userInputs) {
+        userInputs.addEventListener("input", function (e) {
+            var a, b, i, val = this.value;
+            closeAllLists();
+            if (!val) { return false; }
+            console.log(i)
+            currentFocus = -1;
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            this.parentNode.appendChild(a);
+            for (i = 0; i < savedCities.length; i++) {
+
+                if (savedCities[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    b = document.createElement("DIV");
+                    b.innerHTML = "<strong>" + savedCities[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += savedCities[i].substr(val.length);
+                    b.innerHTML += "<input type='hidden' value='" + savedCities[i] + "'>";
+                    b.addEventListener("click", function (e) {
+                        userInputs.value = this.getElementsByTagName("input")[0].value;
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        })
+    };
+    if (userInputs) {
+        userInputs.addEventListener("keydown", function (e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+                currentFocus++;
+                addActive(x);
+            } else if (e.keyCode == 38) {
+                currentFocus--;
+                addActive(x);
+            } else if (e.keyCode == 13) {
+                e.preventDefault();
+                if (currentFocus > -1) {
+                    if (x) x[currentFocus].click();
+                }
+            }
+        })
+    };
+    function addActive(x) {
+        if (!x) return false;
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        x[currentFocus].classList.add("autocomplete-active");
+    }
+    function removeActive(x) {
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+        }
+    }
+    function closeAllLists(elmnt) {
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != userInputs) {
+                x[i].parentNode.removeChild(x[i]);
+            }
+        }
+    }
+    // document.addEventListener("click", function (e) {
+    //     closeAllLists(e.target);
+    // });
 }
 
 
