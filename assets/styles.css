@@ -1,10 +1,6 @@
-/* .restaurant-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-} */
+.notification {
+border: solid black 2px;
+}
 
 #filter-container {
     display: flex; 
@@ -51,8 +47,3 @@ img {
     width: 20%;
     border: solid black 2px;
 }
-
-/* ul container
-card
-image
-li */
