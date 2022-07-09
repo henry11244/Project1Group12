@@ -42,3 +42,21 @@ img {
     border: solid black 2px;
     float:left;
 }
+
+#errorMessage {
+    color: red;
+    display: none
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+    color: black
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+}
