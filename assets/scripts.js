@@ -173,7 +173,35 @@ function filterPrice(data) {
     }
 }
 
-function filterType(data)
+function filterType(data) {
+    count = 0
+    for (var i = 0; i < 50; i++) {
+        if (count < 10) {
+            var filter2 = $("#filter2")
+            if (data.businesses[i].categories[0].alias.toLowerCase().includes(filter2.val()[0].toLowerCase())) {
+                restaurantListContainer = document.querySelector(".restaurant-list")
+                restaurantCard = document.createElement("div")
+                restaurantImage = document.createElement("img")
+                restaurantImage.src = data.businesses[i].image_url
+                restaurantCard.append(restaurantImage)
+                restaurantName = document.createElement("a")
+                restaurantName.setAttribute("href", data.businesses[i].url)
+                restaurantName.setAttribute("target", "_blank")
+                restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+                restaurantCard.append(restaurantName)
+                restaurantAddress = document.createElement("li")
+                restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+                restaurantCard.append(restaurantAddress)
+                restaurantPhone = document.createElement("li")
+                restaurantPhone.textContent = data.businesses[i].display_phone
+                restaurantCard.append(restaurantPhone)
+                restaurantCard.setAttribute('class', 'card')
+                restaurantListContainer.append(restaurantCard)
+                count++
+            }
+        }
+    }
+}
 
 
 
