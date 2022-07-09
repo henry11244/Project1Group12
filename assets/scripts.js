@@ -11,45 +11,39 @@ if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JS
 
 function apiPull() {
     cityName = userInput.val()
-    fetch(`https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=0jqDAD-zXewS00iMXPqH9-EWmxQwXtr_3FGl5EqT8c0`)
+    // yelp API
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
         .then(response => response.json())
         .then(data => {
-            errorMessage.style.display = 'none'
-            cityPicture = data.results[0].links.download
-            console.log(cityPicture);
-            var html = document.querySelector('html')
-            html.style.backgroundImage = `url("${data.results[0].links.download}")`;
-            localStorageAdd(cityName)
+            console.log(data)
+            lat = data[0].lat
+            lon = data[0].lon
 
 
+            $.ajax({
+                url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lon}&limit=50`,
+                headers: {
+                    'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
+                },
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    filterPrice(data)
+                }
+            })
 
-            // yelp API
-            fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
+            fetch(`https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=0jqDAD-zXewS00iMXPqH9-EWmxQwXtr_3FGl5EqT8c0`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    lat = data[0].lat
-                    lon = data[0].lon
-                    $.ajax({
-                        url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lon}&limit=50`,
-                        headers: {
-                            'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
-                        },
-                        method: 'GET',
-                        dataType: 'json',
-                        success: function (data) {
-                            console.log(data)
-                            filterPrice(data)
-
-                        }
-                    })
-
+                    errorMessage.style.display = 'none'
+                    cityPicture = data.results[0].links.download
+                    console.log(cityPicture);
+                    var html = document.querySelector('html')
+                    html.style.backgroundImage = `url("${data.results[0].links.download}")`;
+                    localStorageAdd(cityName)
                 })
-                .catch(err => console.error(err));
-        })
-
-        .catch(err => { errorMessage.style.display = 'block' });
-
+        }).catch(err => { errorMessage.style.display = 'block' });
 }
 
 //creates event listener for search button

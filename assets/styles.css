@@ -1,27 +1,27 @@
 #proxy-server {
     display: flex;
     justify-content: center;
-    font-size: 10px; 
+    font-size: 10px;
     text-align: center;
 }
 
 .notification {
-border: solid black 2px;
+    border: solid black 2px;
 }
 
 #filter-container {
-    display: flex; 
+    display: flex;
     justify-content: center;
-    gap: 20px; 
+    gap: 20px;
 }
 
 #checkbox {
-    display: flex; 
+    display: flex;
     justify-content: center;
 }
 
 #button-container {
-    display: flex; 
+    display: flex;
     justify-content: center;
 }
 
@@ -47,12 +47,13 @@ ul {
 img {
     width: 20%;
     border: solid black 2px;
-    float:left;
+    float: left;
 }
 
 #errorMessage {
     color: red;
-    display: none
+    display: none;
+    font-weight: bold;
 }
 
 .autocomplete-items div {
