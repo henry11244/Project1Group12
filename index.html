@@ -18,41 +18,16 @@
 </head>
 
 <body>
-
-
   <main class="container is-max-widescreen">
     <div class="notification m-5 has-background-grey-light">
       <h1 class="is-size-2 has-text-centered">Feeling hungry?</h1>
-      <div class="control">
+      <div class="control autocomplete" autocomplete="on">
         <input id="user-input" class="input" type="text" placeholder="City Name">
       </div>
       <br>
-      <div id="filter-container">
-
-
-
-
-  <section class="hero is-small is-info">
-    <div class="hero-body">
-      <p class="title" style="text-align: center;">
-        Feeling hungry?
-      </p><br>
-      <p class=" subtitle" style="text-align: center;">
-        Type in a city to randomly generate a list of restaurants near you along with some of the optional filters for a
-        refined search.
-      </p>
-      <div class="control" autocomplete="on" class="autocomplete">
-        <input id="user-input" class="input is-focused" type="text" placeholder="City Name">
-      </div><br>
       <p id="errorMessage">Please enter valid city</p>
       <br>
-      <div id="filter-container" style="display: flex; flex-direction: row; justify-content: space-around;">
-
-
-
-
-
-
+      <div id="filter-container">
         <div class="select is-multiple">
           <select id="filter1" multiple size="3">
             <h2 class="has-text-centered">Price</h2>
@@ -83,9 +58,6 @@
       </div>
     </div>
   </main>
-
-
-
   <div class="restaurant-container">
     <ul class="restaurant-list"></ul>
   </div>

@@ -268,6 +268,7 @@ document.addEventListener("click", function () {
 // function to display the material
 // function to clear the search info
 // for each list item clicked display the name, address, contact info, picture and filters chosen (future goal?)
+// function to save and return local storage for previous searches (HENRY)
 
 
 
@@ -283,7 +284,6 @@ document.addEventListener("click", function () {
 
 
 
-// function to save and return local storage for previous searches (HENRY)
 
 
 
