@@ -28,7 +28,8 @@ function apiPull() {
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
-                    filterPrice(data)
+                  /*   filterPrice(data) */
+                    filterType(data)
                 }
             })
 
@@ -171,6 +172,8 @@ function filterPrice(data) {
         }
     }
 }
+
+
 
 
 
