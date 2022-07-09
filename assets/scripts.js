@@ -24,7 +24,7 @@ function apiPull() {
 
 
             // yelp API
-            fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
+            fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
