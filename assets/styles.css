@@ -1,3 +1,48 @@
+.notification {
+border: solid black 2px;
+}
+
+#filter-container {
+    display: flex; 
+    justify-content: center;
+    gap: 20px; 
+}
+
+#checkbox {
+    display: flex; 
+    justify-content: center;
+}
+
+#button-container {
+    display: flex; 
+    justify-content: center;
+}
+
+select {
+    width: 200px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    width: 50%;
+    padding: 10px;
+    border: solid black 2px;
+    text-align: center;
+}
+
+img {
+    width: 20%;
+    border: solid black 2px;
+    float:left;
+}
+
 #errorMessage {
     color: red;
     display: none
