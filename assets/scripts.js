@@ -11,15 +11,14 @@ if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JS
 
 function apiPull() {
     cityName = userInput.val()
-    // yelp API
+    //   City search API to return lat/lon
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
         .then(response => response.json())
         .then(data => {
             console.log(data)
             lat = data[0].lat
             lon = data[0].lon
-
-
+            // yelp API
             $.ajax({
                 url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lon}&limit=50`,
                 headers: {
@@ -33,6 +32,7 @@ function apiPull() {
                 }
             })
 
+            // background image api
             fetch(`https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=0jqDAD-zXewS00iMXPqH9-EWmxQwXtr_3FGl5EqT8c0`)
                 .then(response => response.json())
                 .then(data => {
