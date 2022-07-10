@@ -5,7 +5,6 @@ var searchButton = $("#search-button")
 var count = 0
 var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
-var filter2 = $("#filter2")
 
 // local storage pull
 if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JSON.parse(localStorage.getItem('savedCities')) }
@@ -23,16 +22,16 @@ function apiPull() {
             $.ajax({
                 url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lon}&limit=50`,
                 headers: {
-                    'Authorization': 'Bearer 2cl9uk4RaFkV7r2RUuLU4TNaXsrqOnN_G-K85Qkl6e55vsIw63WQcVwHeJD8yAs06oWW_txKxiXja76p1mEDtDWQbgSWpqnDgq9UdGt7hXRy35kf20HaZA52XfHJYnYx',
+                    'Authorization': 'Bearer lV49BOJRAf232C8bfbXTKpfcxghVwHWqHBwUbGiGFGsEaaIseKD2TOjlYmo9pag2R2YnEGMuZZzNoWe2m0akjEMr44OQMxFdEK1gfMWESoAD2gRelaIotNsBa9XFYnYx',
                 },
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
-                    filterPrice(data)
-                    /* filterType(data) */
+                     filterPrice(data) 
                     
                 }
+                
             })
 
             // background image api
@@ -61,18 +60,13 @@ function clearCards() {
     }
 }
 
-/* function randomChoice() {
-   var randomNumber = Math.floor(Math.random() * 50)
-   console.log(randomNumber)
-} */
-
 
 function filterPrice(data) {
     count = 0
     for (var i = 0; i < 50; i++) {
         if (count < 10) {
             var filter1 = $("#filter1")
-            if (filter1.val()[0] == 1 && data.businesses[i].price == '$') {
+            if (filter1.val()[0] == data.businesses[i].price) {
                 restaurantListContainer = document.querySelector(".restaurant-list")
                 restaurantCard = document.createElement("div")
                 restaurantImage = document.createElement("img")
@@ -93,7 +87,8 @@ function filterPrice(data) {
                 restaurantListContainer.append(restaurantCard)
                 count++
             }
-            else if (filter1.val()[0] == 2 && data.businesses[i].price == '$$') {
+
+             else if (filter1.val()[0] == undefined) {
                 restaurantListContainer = document.querySelector(".restaurant-list")
                 restaurantCard = document.createElement("div")
                 restaurantImage = document.createElement("img")
@@ -114,7 +109,16 @@ function filterPrice(data) {
                 restaurantListContainer.append(restaurantCard)
                 count++
             }
-            else if (filter1.val()[0] == 3 && data.businesses[i].price == '$$$') {
+        }
+    }
+}
+
+function filterType(data) {
+    count = 0
+    for (var i = 0; i < 50; i++) {
+        if (count < 10) {
+            var filter2 = $("#filter2")
+            if (data.businesses[i].categories[0].alias.includes(filter2.val()[0])) {
                 restaurantListContainer = document.querySelector(".restaurant-list")
                 restaurantCard = document.createElement("div")
                 restaurantImage = document.createElement("img")
@@ -134,8 +138,7 @@ function filterPrice(data) {
                 restaurantCard.setAttribute('class', 'card')
                 restaurantListContainer.append(restaurantCard)
                 count++
-            }
-            else if (filter1.val()[0] == 4 && data.businesses[i].price == '$$$$') {
+            } else if (filter2.val()[0] == undefined) {
                 restaurantListContainer = document.querySelector(".restaurant-list")
                 restaurantCard = document.createElement("div")
                 restaurantImage = document.createElement("img")
@@ -155,56 +158,6 @@ function filterPrice(data) {
                 restaurantCard.setAttribute('class', 'card')
                 restaurantListContainer.append(restaurantCard)
                 count++
-            }
-            
-             else if (filter1.val()[0] == undefined && filter2.val() == undefined) {
-                restaurantListContainer = document.querySelector(".restaurant-list")
-                restaurantCard = document.createElement("div")
-                restaurantImage = document.createElement("img")
-                restaurantImage.src = data.businesses[i].image_url
-                restaurantCard.append(restaurantImage)
-                restaurantName = document.createElement("a")
-                restaurantName.setAttribute("href", data.businesses[i].url)
-                restaurantName.setAttribute("target", "_blank")
-                restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
-                restaurantCard.append(restaurantName)
-                restaurantAddress = document.createElement("li")
-                restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
-                restaurantCard.append(restaurantAddress)
-                restaurantPhone = document.createElement("li")
-                restaurantPhone.textContent = data.businesses[i].display_phone
-                restaurantCard.append(restaurantPhone)
-                restaurantCard.setAttribute('class', 'card')
-                restaurantListContainer.append(restaurantCard)
-                count++
-             } else if (data.businesses[i].categories[0].alias.toLowerCase().includes(filter2.val()[0].toLowerCase())) {
-                for (var i = 0; i < 50; i++) {
-                    if (count < 10 ) {
-                        if (data.businesses[i].categories[0].alias.toLowerCase().includes(filter2.val()[0].toLowerCase())) {
-                            restaurantListContainer = document.querySelector(".restaurant-list")
-                            restaurantCard = document.createElement("div")
-                            restaurantImage = document.createElement("img")
-                            restaurantImage.src = data.businesses[i].image_url
-                            restaurantCard.append(restaurantImage)
-                            restaurantName = document.createElement("a")
-                            restaurantName.setAttribute("href", data.businesses[i].url)
-                            restaurantName.setAttribute("target", "_blank")
-                            restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
-                            restaurantCard.append(restaurantName)
-                            restaurantAddress = document.createElement("li")
-                            restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
-                            restaurantCard.append(restaurantAddress)
-                            restaurantPhone = document.createElement("li")
-                            restaurantPhone.textContent = data.businesses[i].display_phone
-                            restaurantCard.append(restaurantPhone)
-                            restaurantCard.setAttribute('class', 'card')
-                            restaurantListContainer.append(restaurantCard)
-                            count++
-                        }
-                     
-                    }
-                }
-            
             }
         }
     }
