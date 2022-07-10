@@ -56,13 +56,19 @@ function apiPull() {
             anime({
                 targets: 'main',
                 easing: 'linear',
-                duration: 1000,
+                duration: 300,
                 translateX: [
                     {
                         value: 50,
                     },
                     {
                         value: -50,
+                    },
+                    {
+                        value: 50,
+                    },
+                    {
+                        value: 0,
                     },
                 ],
             });
