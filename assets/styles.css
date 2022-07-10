@@ -27,6 +27,7 @@
 
 select {
     width: 200px;
+    margin: 20px;
 }
 
 ul {
@@ -68,3 +69,4 @@ img {
     /*when hovering an item:*/
     background-color: #e9e9e9;
 }
+
