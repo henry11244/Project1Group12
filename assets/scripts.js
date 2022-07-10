@@ -9,6 +9,7 @@ var filter2 = $("#filter2")
 var proxy = document.querySelector('#proxy')
 
 
+
 // newWindow = () => { window.open('https://cors-anywhere.herokuapp.com/corsdemo'); myWindow.document.write("<p>This is 'myWindow'</p>") }
 // $(newWindow).load(function () { console.log('test') })
 
@@ -38,9 +39,7 @@ function apiPull() {
                     filterPrice(data)
 
                 }
-
             })
-
             // background image api
             fetch(`https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=0jqDAD-zXewS00iMXPqH9-EWmxQwXtr_3FGl5EqT8c0`)
                 .then(response => response.json())
@@ -52,7 +51,22 @@ function apiPull() {
                     html.style.backgroundImage = `url("${data.results[0].links.download}")`;
                     localStorageAdd(cityName)
                 })
-        }).catch(err => { errorMessage.style.display = 'block' });
+        }).catch(err => {
+            errorMessage.style.display = 'block';
+            anime({
+                targets: 'main',
+                easing: 'linear',
+                duration: 1000,
+                translateX: [
+                    {
+                        value: 50,
+                    },
+                    {
+                        value: -50,
+                    },
+                ],
+            });
+        });
 }
 
 //creates event listener for search button
