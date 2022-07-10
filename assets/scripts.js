@@ -6,6 +6,12 @@ var count = 0
 var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
 var filter2 = $("#filter2")
+var proxy = document.querySelector('#proxy')
+
+
+// newWindow = () => { window.open('https://cors-anywhere.herokuapp.com/corsdemo'); myWindow.document.write("<p>This is 'myWindow'</p>") }
+// $(newWindow).load(function () { console.log('test') })
+
 
 // local storage pull
 if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JSON.parse(localStorage.getItem('savedCities')) }
@@ -53,6 +59,10 @@ function apiPull() {
 searchButton.on("click", function () {
     clearCards()
     apiPull()
+
+    // newWindow()
+    // open(newWindow)
+    // console.log(newWindow)
 })
 
 function clearCards() {
