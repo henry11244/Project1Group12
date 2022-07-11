@@ -8,6 +8,7 @@ var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
 var filter2 = $("#filter2")
 var filter1 = $("#filter1")
+var checkbox = $(".checkbox")
 
 // local storage pull
 if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JSON.parse(localStorage.getItem('savedCities')) }
@@ -76,6 +77,7 @@ function apiPull() {
 searchButton.on("click", function () {
     clearCards()
     apiPull()
+    console.log(checkbox[0].checked)
 })
 
 // Removes existing resturants everytime user clicks search
