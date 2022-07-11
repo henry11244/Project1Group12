@@ -10,6 +10,7 @@ var filter2 = $("#filter2")
 var filter1 = $("#filter1")
 var checkbox = $(".checkbox")
 
+// random number generator
 randomNumber = (maxNum) => { return Math.floor(Math.random() * maxNum) }
 
 
@@ -17,7 +18,10 @@ randomNumber = (maxNum) => { return Math.floor(Math.random() * maxNum) }
 if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JSON.parse(localStorage.getItem('savedCities')) }
 
 function apiPull() {
+    possibleOptionsIndex = []
+    console.log(possibleOptionsIndex)
     cityName = userInput.val()
+    console.log(checkbox.is(':checked'))
     //   City search API to return lat/lon
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName},US&limit=5&appid=7acb10b31a225ce5f6e678b28717604c`)
         .then(response => response.json())
@@ -80,7 +84,6 @@ function apiPull() {
 searchButton.on("click", function () {
     clearCards()
     apiPull()
-    console.log(checkbox[0].checked)
 })
 
 // Removes existing resturants everytime user clicks search
@@ -116,17 +119,37 @@ function listCreation(i, data) {
 // for category filter, searches all alias for each resturant
 function categoriesSearch(i, data) { for (var x = 0; x < data.businesses[i].categories.length; x++) { if (data.businesses[i].categories[x].alias.includes(filter2.val()[0])) { return true } } }
 
+
+
 // function for limiting list to 10 and for checking resturants against filters before adding them to page
 function filterPrice(data) {
     count = 0
-    for (var i = 0; i < 50; i++) {
-        if (count < 10) {
+    for (var i = 0; i < 50; i++)
+
+        // if random restaurant box is checked, runs all resturants through a filter and add it to the possible option array
+        if (checkbox.is(':checked')) {
             if ((filter1.val()[0] == data.businesses[i].price || filter1.val()[0] == undefined) &&
                 (categoriesSearch(i, data) || filter2.val()[0] == undefined)) {
-                listCreation(i, data)
+                possibleOptionsIndex.push(i)
+                isChecked = true
             }
-
         }
+
+        // if random option is not selected display 10
+        else {
+            if (count < 10) {
+                if ((filter1.val()[0] == data.businesses[i].price || filter1.val()[0] == undefined) &&
+                    (categoriesSearch(i, data) || filter2.val()[0] == undefined)) {
+                    listCreation(i, data)
+                    isChecked = false
+                }
+
+            }
+        }
+
+    // picks a random restaurant that passed the filter functions above
+    if (isChecked) {
+        listCreation(possibleOptionsIndex[randomNumber(possibleOptionsIndex.length)], data)
     }
 }
 
