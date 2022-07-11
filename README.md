@@ -53,6 +53,7 @@
 ## Instructions
 
 ![Alt Text](assets/ReadMeGif.gif)
+![Alt Text](assets/ReadMeGif2.gif)
 
 
 Once you have navagated to the webpage: 
