@@ -75,3 +75,7 @@ img {
     color: white;
     box-shadow: 3px 3px black;
 }
+
+html {
+    background-color: skyblue;
+}
