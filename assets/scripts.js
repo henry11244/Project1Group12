@@ -1,6 +1,7 @@
 //these are our global variables
 var userInput = $("#user-input")
 var form = document.querySelector("#form")
+var userInputs = document.querySelector("#user-input")
 var searchButton = $("#search-button")
 var count = 0
 var errorMessage = document.querySelector('#errorMessage')
@@ -146,9 +147,11 @@ userInput.on("keydown", function (e) {
 // autocomplete
 {
     if (userInput) {
+        var currentFocus
         userInput.on("input", function (e) {
             closeAllLists();
             if (!this.value) { return false; }
+            currentFocus = -1;
             var autocompleteContainer = document.createElement("DIV");
             autocompleteContainer.setAttribute("id", this.id + "autocomplete-list");
             autocompleteContainer.setAttribute("class", "autocomplete-items");
@@ -160,7 +163,7 @@ userInput.on("keydown", function (e) {
                     autocompleteContainerElement.innerHTML += savedCities[i].substr(this.value.length);
                     autocompleteContainerElement.innerHTML += "<input type='hidden' value='" + savedCities[i] + "'>";
                     autocompleteContainerElement.addEventListener("click", function (e) {
-                        userInput.value = userInput[0].value;
+                        userInput[0].value = this.getElementsByTagName("input")[0].value;
                         closeAllLists();
                     });
                     autocompleteContainer.append(autocompleteContainerElement);
@@ -183,3 +186,4 @@ function closeAllLists(elmnt) {
 document.addEventListener("click", function () {
     closeAllLists();
 });
+
