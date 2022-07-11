@@ -7,7 +7,7 @@ var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
 var filter2 = $("#filter2")
 var proxy = document.querySelector('#proxy')
-var data = ''
+var filter1 = $("#filter1")
 
 // newWindow = () => { window.open('https://cors-anywhere.herokuapp.com/corsdemo'); myWindow.document.write("<p>This is 'myWindow'</p>") }
 // $(newWindow).load(function () { console.log('test') })
@@ -34,7 +34,6 @@ function apiPull() {
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                    data = data
                     console.log(data)
                     filterPrice(data)
 
@@ -85,40 +84,47 @@ searchButton.on("click", function () {
     // console.log(newWindow)
 })
 
+// Removes existing resturants everytime user clicks search
 function clearCards() {
     for (var i = 0; i < 50; i++) {
         $('.restaurant-list').empty()
     }
 }
 
+// function for creating resturant list
+function listCreation(i, data) {
+    restaurantListContainer = document.querySelector(".restaurant-list")
+    restaurantCard = document.createElement("div")
+    restaurantImage = document.createElement("img")
+    restaurantImage.src = data.businesses[i].image_url
+    restaurantCard.append(restaurantImage)
+    restaurantName = document.createElement("a")
+    restaurantName.setAttribute("href", data.businesses[i].url)
+    restaurantName.setAttribute("target", "_blank")
+    restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
+    restaurantCard.append(restaurantName)
+    restaurantAddress = document.createElement("li")
+    restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
+    restaurantCard.append(restaurantAddress)
+    restaurantPhone = document.createElement("li")
+    restaurantPhone.textContent = data.businesses[i].display_phone
+    restaurantCard.append(restaurantPhone)
+    restaurantCard.setAttribute('class', 'card')
+    restaurantListContainer.append(restaurantCard)
+    count++
+}
+
+// for category filter, searches all alias for each resturant
 function categoriesSearch(i, data) { for (var x = 0; x < data.businesses[i].categories.length; x++) { if (data.businesses[i].categories[x].alias.includes(filter2.val()[0])) { return true } } }
 
+// function for limiting list to 10 and for checking resturants against filters before adding them to page
 function filterPrice(data) {
     count = 0
     for (var i = 0; i < 50; i++) {
         if (count < 10) {
-            var filter1 = $("#filter1")
             if ((filter1.val()[0] == data.businesses[i].price || filter1.val()[0] == undefined) &&
                 (categoriesSearch(i, data) || filter2.val()[0] == undefined)) {
-                restaurantListContainer = document.querySelector(".restaurant-list")
-                restaurantCard = document.createElement("div")
-                restaurantImage = document.createElement("img")
-                restaurantImage.src = data.businesses[i].image_url
-                restaurantCard.append(restaurantImage)
-                restaurantName = document.createElement("a")
-                restaurantName.setAttribute("href", data.businesses[i].url)
-                restaurantName.setAttribute("target", "_blank")
-                restaurantName.textContent = data.businesses[i].name + " " + data.businesses[i].rating + "⭐"
-                restaurantCard.append(restaurantName)
-                restaurantAddress = document.createElement("li")
-                restaurantAddress.textContent = data.businesses[i].location.display_address[0] + " " + data.businesses[i].location.display_address[1]
-                restaurantCard.append(restaurantAddress)
-                restaurantPhone = document.createElement("li")
-                restaurantPhone.textContent = data.businesses[i].display_phone
-                restaurantCard.append(restaurantPhone)
-                restaurantCard.setAttribute('class', 'card')
-                restaurantListContainer.append(restaurantCard)
-                count++
+                listCreation(i, data)
             }
 
         }
