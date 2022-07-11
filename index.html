@@ -11,7 +11,6 @@
 </head>
 
 <body>
-  <!-- <iframe src="https://cors-anywhere.herokuapp.com/corsdemo" frameborder="1"></iframe> -->
   <main class="container is-max-widescreen">
     <div class="notification m-5 has-background-light">
       <h1 class="is-size-2 has-text-centered">Let's Taco 'Bout Food</h1>
@@ -21,9 +20,8 @@
         <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">Please activate temporary proxy
           server.</a>
       </div>
-      <form id='form' class="control autocomplete" autocomplete="on" data-parsley-validate="parsley">
-        <input id="user-input" class="input" type="text" placeholder="City Name" required="true"
-          data-parsley-required="true">
+      <form id='form' class="control autocomplete" autocomplete="on">
+        <input id="user-input" class="input" type="text" placeholder="City Name" required="true">
       </form>
       <br>
       <p id="errorMessage">Please enter valid city</p>
