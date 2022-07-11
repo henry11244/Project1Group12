@@ -1,4 +1,4 @@
-# Project1Group12
+# Let's Taco 'Bout Food
 
 <div id="top"></div>
 
@@ -6,7 +6,7 @@
 <div align="center">
 
 
-<h3 align="center">Restaurant Finder</h3>
+<h3 align="center">Let's Taco 'Bout Food</h3>
 
   <p align="center">
     Browser-based tool for discovering new restaurants
