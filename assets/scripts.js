@@ -43,6 +43,8 @@ function apiPull() {
                     console.log(cityPicture);
                     var html = document.querySelector('html')
                     html.style.backgroundImage = `url("${data.results[0].links.download}")`;
+                    html.style.backgroundAttachment = "fixed";
+                    html.style.backgroundSize = "100% 100%";
                     localStorageAdd(cityName)
                 })
         }).catch(err => {
