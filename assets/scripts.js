@@ -9,6 +9,9 @@ var savedCities = []
 var filter2 = $("#filter2")
 var filter1 = $("#filter1")
 
+randomNumber = (maxNum) => { return Math.floor(Math.random() * maxNum) }
+
+
 // local storage pull
 if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JSON.parse(localStorage.getItem('savedCities')) }
 
