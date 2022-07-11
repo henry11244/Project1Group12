@@ -151,11 +151,9 @@ userInput.on("keydown", function (e) {
 // autocomplete
 {
     if (userInput) {
-        var currentFocus
         userInput.on("input", function (e) {
             closeAllLists();
             if (!this.value) { return false; }
-            currentFocus = -1;
             var autocompleteContainer = document.createElement("DIV");
             autocompleteContainer.setAttribute("id", this.id + "autocomplete-list");
             autocompleteContainer.setAttribute("class", "autocomplete-items");
