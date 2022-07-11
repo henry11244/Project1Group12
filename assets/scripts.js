@@ -7,6 +7,7 @@ var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
 var filter2 = $("#filter2")
 var proxy = document.querySelector('#proxy')
+var data = ''
 
 // newWindow = () => { window.open('https://cors-anywhere.herokuapp.com/corsdemo'); myWindow.document.write("<p>This is 'myWindow'</p>") }
 // $(newWindow).load(function () { console.log('test') })
@@ -33,6 +34,7 @@ function apiPull() {
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
+                    data = data
                     console.log(data)
                     filterPrice(data)
 
@@ -89,13 +91,15 @@ function clearCards() {
     }
 }
 
+function categoriesSearch(i, data) { for (var x = 0; x < data.businesses[i].categories.length; x++) { if (data.businesses[i].categories[x].alias.includes(filter2.val()[0])) { return true } } }
 
 function filterPrice(data) {
     count = 0
     for (var i = 0; i < 50; i++) {
         if (count < 10) {
             var filter1 = $("#filter1")
-            if ((filter1.val()[0] == data.businesses[i].price || filter1.val()[0] == undefined) && (data.businesses[i].categories[0].alias.includes(filter2.val()[0]) || filter2.val()[0] == undefined)) {
+            if ((filter1.val()[0] == data.businesses[i].price || filter1.val()[0] == undefined) &&
+                (categoriesSearch(i, data) || filter2.val()[0] == undefined)) {
                 restaurantListContainer = document.querySelector(".restaurant-list")
                 restaurantCard = document.createElement("div")
                 restaurantImage = document.createElement("img")
