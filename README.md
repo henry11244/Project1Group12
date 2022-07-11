@@ -52,10 +52,6 @@
 
 ## Instructions
 
-![Alt Text](assets/ReadMeGif.gif)
-![Alt Text](assets/ReadMeGif2.gif)
-
-
 Once you have navagated to the webpage: 
 
 - You are presented with search bar and restaurant filter for cost and food type
@@ -63,6 +59,9 @@ Once you have navagated to the webpage:
 - If you enter a restaurant name, select your desired filters and submit the form using the search button and pressing enter, you are presented with a list of resturants that fill those filter criterian
 - You are able to search for new restaurants again.
 
+![Alt Text](assets/ReadMeGif.gif)
+
+![Alt Text](assets/ReadMeGif2.gif)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
