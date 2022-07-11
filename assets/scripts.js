@@ -1,18 +1,12 @@
-//Link for proxy server: https://cors-anywhere.herokuapp.com
+//these are our global variables
 var userInput = $("#user-input")
-var userInputs = document.querySelector("#user-input")
 var form = document.querySelector("#form")
 var searchButton = $("#search-button")
 var count = 0
 var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
 var filter2 = $("#filter2")
-var proxy = document.querySelector('#proxy')
 var filter1 = $("#filter1")
-
-// newWindow = () => { window.open('https://cors-anywhere.herokuapp.com/corsdemo'); myWindow.document.write("<p>This is 'myWindow'</p>") }
-// $(newWindow).load(function () { console.log('test') })
-
 
 // local storage pull
 if (JSON.parse(localStorage.getItem('savedCities') !== null)) { savedCities = JSON.parse(localStorage.getItem('savedCities')) }
@@ -79,10 +73,6 @@ function apiPull() {
 searchButton.on("click", function () {
     clearCards()
     apiPull()
-
-    // newWindow()
-    // open(newWindow)
-    // console.log(newWindow)
 })
 
 // Removes existing resturants everytime user clicks search
@@ -132,7 +122,6 @@ function filterPrice(data) {
     }
 }
 
-
 // add to local storage
 localStorageAdd = (cityName) => {
     repeat = false
@@ -146,7 +135,7 @@ localStorageAdd = (cityName) => {
 }
 
 // submits form on enter key
-userInputs.addEventListener("keydown", function (e) {
+userInput.on("keydown", function (e) {
     if (e.keyCode == 13) {
         e.preventDefault();
         clearCards()
@@ -156,8 +145,8 @@ userInputs.addEventListener("keydown", function (e) {
 
 // autocomplete
 {
-    if (userInputs) {
-        userInputs.addEventListener("input", function (e) {
+    if (userInput) {
+        userInput.on("input", function (e) {
             closeAllLists();
             if (!this.value) { return false; }
             var autocompleteContainer = document.createElement("DIV");
@@ -171,7 +160,7 @@ userInputs.addEventListener("keydown", function (e) {
                     autocompleteContainerElement.innerHTML += savedCities[i].substr(this.value.length);
                     autocompleteContainerElement.innerHTML += "<input type='hidden' value='" + savedCities[i] + "'>";
                     autocompleteContainerElement.addEventListener("click", function (e) {
-                        userInputs.value = userInputs[0].value;
+                        userInput.value = userInput[0].value;
                         closeAllLists();
                     });
                     autocompleteContainer.append(autocompleteContainerElement);
@@ -185,7 +174,7 @@ userInputs.addEventListener("keydown", function (e) {
 function closeAllLists(elmnt) {
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
-        if (elmnt != x[i] && elmnt != userInputs) {
+        if (elmnt != x[i] && elmnt != userInput) {
             x[i].parentNode.removeChild(x[i]);
         }
     }
@@ -194,35 +183,3 @@ function closeAllLists(elmnt) {
 document.addEventListener("click", function () {
     closeAllLists();
 });
-
-
-
-
-// declare our variables for our button, user input, filter options, and toggle switch
-// an event listener for our search button
-// function to fetch and return data
-// function to display the material
-// function to clear the search info
-// for each list item clicked display the name, address, contact info, picture and filters chosen (future goal?)
-// function to save and return local storage for previous searches (HENRY)
-
-
-
-
-// function for filter options
-
-
-
-
-// a function saying if the toggle switch is not selected then display restaurants in a top 10 list else display a random choice (SUFI_)
-
-
-
-
-
-
-
-
-
-
-//display image and link in each restaurant card (CHELSEA)
