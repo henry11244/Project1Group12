@@ -1,6 +1,7 @@
 //Link for proxy server: https://cors-anywhere.herokuapp.com
 var userInput = $("#user-input")
 var userInputs = document.querySelector("#user-input")
+var form = document.querySelector("#form")
 var searchButton = $("#search-button")
 var count = 0
 var errorMessage = document.querySelector('#errorMessage')
@@ -144,57 +145,40 @@ localStorageAdd = (cityName) => {
     }
 }
 
+// submits form on enter key
+userInputs.addEventListener("keydown", function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        clearCards()
+        apiPull()
+    }
+})
+
 // autocomplete
 {
-    var currentFocus;
     if (userInputs) {
         userInputs.addEventListener("input", function (e) {
             closeAllLists();
             if (!this.value) { return false; }
-            currentFocus = -1;
-            var a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "autocomplete-items");
-            this.parentNode.appendChild(a);
+            var autocompleteContainer = document.createElement("DIV");
+            autocompleteContainer.setAttribute("id", this.id + "autocomplete-list");
+            autocompleteContainer.setAttribute("class", "autocomplete-items");
+            form.append(autocompleteContainer);
             for (i = 0; i < savedCities.length; i++) {
                 if (savedCities[i].substr(0, this.value.length).toUpperCase() == this.value.toUpperCase()) {
-                    var b = document.createElement("DIV");
-                    b.innerHTML = "<strong>" + savedCities[i].substr(0, this.value.length) + "</strong>";
-                    b.innerHTML += savedCities[i].substr(this.value.length);
-                    b.innerHTML += "<input type='hidden' value='" + savedCities[i] + "'>";
-                    b.addEventListener("click", function (e) {
-                        userInputs.value = this.getElementsByTagName("input")[0].value;
+                    var autocompleteContainerElement = document.createElement("DIV");
+                    autocompleteContainerElement.innerHTML = "<strong>" + savedCities[i].substr(0, this.value.length) + "</strong>";
+                    autocompleteContainerElement.innerHTML += savedCities[i].substr(this.value.length);
+                    autocompleteContainerElement.innerHTML += "<input type='hidden' value='" + savedCities[i] + "'>";
+                    autocompleteContainerElement.addEventListener("click", function (e) {
+                        userInputs.value = userInputs[0].value;
                         closeAllLists();
                     });
-                    a.appendChild(b);
+                    autocompleteContainer.append(autocompleteContainerElement);
                 }
             }
         })
     };
-    if (userInputs) {
-        userInputs.addEventListener("keydown", function (e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-                currentFocus++;
-                addActive(x);
-            } else if (e.keyCode == 38) {
-                currentFocus--;
-                addActive(x);
-            } else if (e.keyCode == 13) {
-                e.preventDefault();
-                if (currentFocus > -1) {
-                    if (x) x[currentFocus].click();
-                }
-            }
-        })
-    };
-    function addActive(x) {
-        if (!x) return false;
-        if (currentFocus >= x.length) currentFocus = 0;
-        if (currentFocus < 0) currentFocus = (x.length - 1);
-        x[currentFocus].classList.add("autocomplete-active");
-    }
 }
 
 // function to close autocomplete which is triggered below on page click
