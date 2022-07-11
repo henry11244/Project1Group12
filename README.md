@@ -59,9 +59,11 @@ Once you have navagated to the webpage:
 - If you enter a restaurant name, select your desired filters and submit the form using the search button and pressing enter, you are presented with a list of resturants that fill those filter criterian
 - You are able to search for new restaurants again.
 
-![Alt Text](assets/ReadMeGif.gif)
+![Overview](assets/overviewgif.gif)
 
-![Alt Text](assets/ReadMeGif2.gif)
+![anime.js](assets/animegif.gif)
+
+![Unsplash API](assets/unsplashgif.gif)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
