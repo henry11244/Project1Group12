@@ -36,6 +36,7 @@
 
 
 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Tools used
@@ -81,6 +82,6 @@ Chelsea Burnham
 
 Sufyaan Vaidya
 
-[Project Link](https://github.com/henry11244/Project1Group12)
+[Deployed Link](https://henry11244.github.io/letsTacoBoutFood/)
 
 
