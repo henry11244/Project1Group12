@@ -62,6 +62,7 @@ function apiPull() {
                 targets: 'main',
                 easing: 'linear',
                 duration: 300,
+                backgroundColor: ["rgb(255, 0, 0)", "rgb(135, 206, 235)"],
                 translateX: [
                     {
                         value: 50,
