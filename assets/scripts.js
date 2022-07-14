@@ -99,6 +99,7 @@ function listCreation(i, data) {
     restaurantListContainer = document.querySelector(".restaurant-list")
     restaurantCard = document.createElement("div")
     restaurantImage = document.createElement("img")
+    restaurantImage.alt = `${data.businesses[i].name} image`
     restaurantImage.src = data.businesses[i].image_url
     restaurantCard.append(restaurantImage)
     restaurantName = document.createElement("a")
