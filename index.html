@@ -12,37 +12,36 @@
 
 <body>
   <main class="container is-max-widescreen">
-    <div class="notification m-5 has-background-light">
+    <div class="notification m-5 searchContainer">
       <h1 class="is-size-2 has-text-centered">Let's Taco 'Bout Food</h1>
       <h3 class="has-text-centered">Our Mission: Making the world a better place, one hangry person at a time.</h3>
       <br>
-      <div id="proxy-server">
-        <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">Please activate temporary proxy
-          server.</a>
-      </div>
+
       <form id='form' class="control autocomplete" autocomplete="on">
         <input id="user-input" class="input" type="text" placeholder="City Name" required="true">
       </form>
       <br>
       <p id="errorMessage">Please enter valid city</p>
       <br>
-      <div id="filter-container">
-        <div class="select is-multiple">
-          <h2 class="has-text-centered">Restaurant's Price:</h2>
-          <select id="filter1" multiple size="3">
-            <option id="price-option1" for="filter1">$</option>
-            <option id="price-option2" for="filter1">$$</option>
-            <option id="price-option3" for="filter1">$$$</option>
-            <option id="price-option4" for="filter1">$$$$</option>
+      <div class="d-flex justify-content-center" id="filter-container">
+        <div class="d-flex justify-content-center">
+          <h2 class="has-text-centered" fo="Price">Resturant's Price:</h2>
+          <select id="resturantPrice" name="Price">
+            <option></option>
+            <option value="$">$</option>
+            <option value="$$">$$</option>
+            <option value="$$$">$$$</option>
+            <option value="$$$$">$$$$</option>
           </select>
         </div>
-        <div class="select is-multiple">
-          <h2 class="has-text-centered">Type Of Food:</h2>
-          <select multiple size="3" id="filter2">
-            <option id="filter2-option1" for="filter2">seafood</option>
-            <option id="filter2-option2" for="filter2">asian</option>
-            <option id="filter2-option3" for="filter2">mexican</option>
-            <option id="filter2-option4" for="filter2">newamerican</option>
+        <div>
+          <h2 class="has-text-centered" for="type">Food Type:</h2>
+          <select name="type" id="foodType">
+            <option placeholder="Select Type"></option>
+            <option value="seafood">seafood</option>
+            <option value="Asian">asian</option>
+            <option value="mexican">mexican</option>
+            <option value="newamerican">new American</option>
           </select>
         </div>
       </div>
@@ -52,6 +51,10 @@
         Choose for me!
       </label>
       <br>
+      <div id="proxy-server">
+        <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">Please activate temporary proxy
+          server.</a>
+      </div>
       <div id="button-container">
         <button id="search-button" class="button is-outlined">Search for Restaurants</button>
       </div>
