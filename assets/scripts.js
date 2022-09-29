@@ -6,8 +6,8 @@ var searchButton = $("#search-button")
 var count = 0
 var errorMessage = document.querySelector('#errorMessage')
 var savedCities = []
-var filter2 = $("#filter2")
-var filter1 = $("#filter1")
+var filter2 = $("#foodType")
+var filter1 = $("#resturantPrice")
 var checkbox = $(".checkbox")
 
 // random number generator
@@ -62,7 +62,7 @@ function apiPull() {
                 targets: 'main',
                 easing: 'linear',
                 duration: 300,
-                backgroundColor: ["rgb(255, 0, 0)", "rgb(135, 206, 235)"],
+                backgroundColor: ["rgb(255, 0, 0)", "#000000"],
                 translateX: [
                     {
                         value: 50,

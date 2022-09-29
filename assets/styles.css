@@ -1,7 +1,16 @@
+.searchContainer {
+    background-color: #e5e2eb;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+select {
+    display: flex
+}
+
 #proxy-server {
     display: flex;
     justify-content: center;
-    font-size: 10px;
+    color: red;
     text-align: center;
 }
 
@@ -9,10 +18,13 @@
     border: solid black 2px;
 }
 
+
+
 #filter-container {
     display: flex;
     justify-content: center;
     gap: 20px;
+
 }
 
 .checkbox-container {
@@ -43,6 +55,9 @@ ul {
     padding: 10px;
     border: solid black 2px;
     text-align: center;
+    background-color: #e3d6cf;
+    z-index: -99;
+    box-shadow: .4rem .2rem #888888;
 }
 
 img {
@@ -77,5 +92,19 @@ img {
 }
 
 html {
-    background-color: skyblue;
+
+    background-color: #f8ece5;
+}
+
+@media only screen and (max-width: 575px) {
+    select {
+        display: flex;
+        width: 5rem
+    }
+
+    #filter-container {
+        font-size: 60%;
+        margin-left: 2rem;
+    }
+
 }
